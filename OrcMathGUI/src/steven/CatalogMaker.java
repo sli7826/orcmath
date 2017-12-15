@@ -14,8 +14,8 @@ public class CatalogMaker {
 	}
 
 	public static void main(String[] args) {
-		CatalogMaker a=new CatalogMaker();
-		
+		CatalogMaker maker=new CatalogMaker();
+		System.out.println(maker.getCsvContent());
 	}
 	
 	public String getCsvContent() {
