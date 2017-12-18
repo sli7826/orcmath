@@ -25,9 +25,6 @@ public class CatalogMaker {
 	private ArrayList<Computer> arr;
 	public CatalogMaker() {
 		arr=new ArrayList<Computer>();
-		arr.add(new Computer(10,10,"i7","gtx1080"));
-		arr.add(new Computer(15,4,"i5","gtx980"));
-		arr.add(new Computer(16,1,"i5","gtx780"));
 	}
 
 	public static void main(String[] args) {
@@ -36,6 +33,11 @@ public class CatalogMaker {
 		Scanner in=new Scanner(System.in);
 		String s;
 		while(true) {
+			System.out.println("Would you like to load a csv?");
+			s=in.nextLine();
+			if(s.equals("yes")) {
+				
+			}
 			int ram=0;
 			int storage=0;
 			String cpu;
@@ -72,8 +74,9 @@ public class CatalogMaker {
 			gpu=s;
 			maker.arr.add(new Computer(ram,storage,cpu,gpu));
 			System.out.println(maker.getCsvContent());
-			maker.saveAsCsv();
-			
+			System.out.println("Would you like to save your file?");
+			s=in.nextLine();
+			if(s.equals("yes"))maker.saveAsCsv();
 		}
 	}
 	
@@ -85,6 +88,20 @@ public class CatalogMaker {
 		return data;
 	}
 	
+	public void loadCsv(String fileName) {
+		try {
+			FileReader fileReader = new FileReader(new File(fileName));
+			BufferedReader br = new BufferedReader(fileReader);
+			String line = "";
+			while ((line = br.readLine()) != null) {
+				String[] a=line.split(",");
+				arr.add(new Computer(Integer.parseInt(a[0]),Integer.parseInt(a[1]),a[2],a[3]));
+			}
+		}catch(IOException e){
+			System.out.println("An IOException was thrown.");
+		}
+	}
+	
 	public void saveAsCsv() {
 		try {
 			FileWriter fw=new FileWriter("computer.csv");
@@ -92,9 +109,7 @@ public class CatalogMaker {
 			fw.close();    
 			System.out.println("Success! File \""+"computer.csv"+"\" saved!");
 		}catch(IOException e){
-
 			System.out.println("An IOException was thrown. \nCheck to see that the directory where you tried to save the file actually exists.");
-
 		}
 	}
 
