@@ -128,7 +128,6 @@ public class Sampler extends GUIApplication implements FileRequester{
 			}); 
 			viewObjects.add(cb);
 			
-			
 		}
 		
 		public void mouseDragged(MouseEvent m) {
