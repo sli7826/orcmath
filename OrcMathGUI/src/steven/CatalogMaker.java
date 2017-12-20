@@ -1,8 +1,6 @@
 package steven;
 
 
-import java.util.Collections;
-
 import java.io.BufferedReader;
 
 import java.io.File;
@@ -15,14 +13,13 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 
-import java.util.List;
-
 import java.util.Scanner;
 
 
 public class CatalogMaker {
 
 	private ArrayList<Computer> arr;
+	public static Scanner in=new Scanner(System.in);
 	public CatalogMaker() {
 		arr=new ArrayList<Computer>();
 	}
@@ -30,7 +27,6 @@ public class CatalogMaker {
 	public static void main(String[] args) {
 		CatalogMaker maker=new CatalogMaker();
 		System.out.println(maker.getCsvContent());
-		Scanner in=new Scanner(System.in);
 		String s;
 		while(true) {
 			System.out.println("Would you like to load a csv?");
@@ -76,7 +72,7 @@ public class CatalogMaker {
 			System.out.println(maker.getCsvContent());
 			System.out.println("Would you like to save your file?");
 			s=in.nextLine();
-			if(s.equals("yes"))maker.saveAsCsv();
+			if(s.equals("yes"))maker.save();
 		}
 	}
 	
@@ -87,7 +83,9 @@ public class CatalogMaker {
 		}
 		return data;
 	}
-	
+	public void addComp(Computer a) {
+		arr.add(a);
+	}
 	public void loadCsv(String fileName) {
 		try {
 			FileReader fileReader = new FileReader(new File(fileName));
@@ -97,12 +95,13 @@ public class CatalogMaker {
 				String[] a=line.split(",");
 				arr.add(new Computer(Integer.parseInt(a[0]),Integer.parseInt(a[1]),a[2],a[3]));
 			}
+			br.close();
 		}catch(IOException e){
 			System.out.println("An IOException was thrown.");
 		}
 	}
 	
-	public void saveAsCsv() {
+	public void save() {
 		try {
 			FileWriter fw=new FileWriter("computer.csv");
 			fw.write(getCsvContent());

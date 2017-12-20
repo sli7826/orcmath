@@ -8,7 +8,8 @@ public class CatalogMakerGUI extends GUIApplication {
 	 * 
 	 */
 	private static final long serialVersionUID = -4547996663510290803L;
-
+	
+	
 	public CatalogMakerGUI(int width, int height) {
 		super(width, height);
 		setVisible(true);
