@@ -37,15 +37,17 @@ public class CatalogScreen extends FullFunctionScreen implements FileRequester {
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		catalog=new CatalogMaker();
-		ram=new TextField(40,40,200,30,"Enter GB","Ram");
+		ram=new TextField(40,40,200,30,"0","Ram");
+		ram.setInputType(TextField.INPUT_TYPE_NUMERIC);
 		viewObjects.add(ram);
-		storage=new TextField(40,90,200,30,"Enter GB","Storage");
+		storage=new TextField(40,90,200,30,"0","Storage");
+		storage.setInputType(TextField.INPUT_TYPE_NUMERIC);
 		viewObjects.add(storage);
-		cpu=new TextField(40,140,200,30,"What is your CPU","CPU");
+		cpu=new TextField(40,140,200,30,"Sample CPU","CPU");
 		viewObjects.add(cpu);
-		gpu=new TextField(40,190,200,30,"What is your GPU","GPU");
+		gpu=new TextField(40,190,200,30,"Sample GPU","GPU");
 		viewObjects.add(gpu);
-		text=new TextArea(350,40,200,30,"Text");
+		text=new TextArea(350,40,400,200,"Computers");
 		viewObjects.add(text);
 		button=new Button(40, 240, 60, 30, "Add",new Color(154,87,146),new Action() {
 			
@@ -79,8 +81,15 @@ public class CatalogScreen extends FullFunctionScreen implements FileRequester {
 	}
 
 	protected void addClick() {
-		text.setText("Add button clicked");
-		
+		if(!ram.getText().equals("")&&!storage.getText().equals("")) {
+			Computer c=new Computer(Integer.parseInt(ram.getText()),Integer.parseInt(storage.getText()),cpu.getText(),gpu.getText());
+			text.setText(text.getText()+"\n"+c);
+			catalog.addComp(c);
+			ram.setText("");
+			storage.setText("");
+			cpu.setText("");
+			gpu.setText("");
+		}
 	}
 
 	@Override
