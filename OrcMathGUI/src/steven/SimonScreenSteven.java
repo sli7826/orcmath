@@ -46,7 +46,44 @@ public class SimonScreenSteven extends Screen implements Runnable {
 	private void nextRound() {
 		acceptingInput=false;
 		roundNumber++;
-		randomMove();
+		sequence.add(randomMove());
+		progress.setRound(roundNumber);
+		progress.setSequenceSize(sequence.size());
+		changeText("Simon's turn");
+		playSequence();
+		acceptingInput = true;
+		sequenceIndex = 0;
+	}
+
+	private void playSequence() {
+		ButtonInterfaceSteven b=null;
+		for(int i=0;i<sequence.size();i++) {
+			if(b!=null) {
+				b.dim();
+			}
+			b=sequence.get(i).getButton();
+			b.highlight();
+			int sleepTime=10000/roundNumber;
+			try {
+				Thread.sleep(sleepTime);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		b.dim();
+		
+	}
+
+	private void changeText(String string) {
+		label.setText(string);
+		try {
+			Thread.sleep(800);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		label.setText("");
 		
 	}
 
