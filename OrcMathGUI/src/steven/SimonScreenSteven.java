@@ -115,12 +115,12 @@ public class SimonScreenSteven extends Screen implements Runnable {
 
 	private MoveInterfaceSteven getMove(int bIndex) {
 		// TODO Auto-generated method stub
-		return null;
+		return new StevenMove((StevenButton) buttons[bIndex]);
 	}
 
 	private ProgressInterfaceSteven getProgress() {
 		// TODO Auto-generated method stub
-		return null;
+		return new StevenProgress(300,300,100,40);
 	}
 
 	private void addButtons() {
@@ -129,9 +129,10 @@ public class SimonScreenSteven extends Screen implements Runnable {
 		Color[] colors={Color.blue,Color.green,Color.red,Color.orange,Color.gray,Color.pink};
 		for(int i=0;i<numberOfButtons;i++) {
 			final ButtonInterfaceSteven b = getAButton();
+			buttons[i] = b;
 			b.setColor(colors[i]);
-			b.setX(30);
-			b.setY(30);
+			b.setX(100);
+			b.setY(30*i);
 			b.setAction(new Action() {
 				
 				@Override
@@ -167,13 +168,13 @@ public class SimonScreenSteven extends Screen implements Runnable {
 					
 				}
 			});
-			buttons[i] = b;
+			
 		}
 	}
 
 	private ButtonInterfaceSteven getAButton() {
 		// TODO Auto-generated method stub
-		return null;
+		return new StevenButton(10,10,20,20,"",null);
 	}
 
 }
