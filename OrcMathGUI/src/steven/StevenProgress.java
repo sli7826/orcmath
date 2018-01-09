@@ -20,24 +20,26 @@ public class StevenProgress extends Component implements ProgressInterfaceSteven
 		seq=1;
 		this.x=x;
 		this.y=y;
+		update();
 	}
 
 	@Override
 	public void gameOver() {
 		game=false;
+		update();
 
 	}
 
 	@Override
 	public void setRound(int i) {
 		round=i;
-
+		update();
 	}
 
 	@Override
 	public void setSequenceSize(int i) {
 		seq=i;
-
+		update();
 	}
 
 	@Override

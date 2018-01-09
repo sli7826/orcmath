@@ -2,9 +2,9 @@ package steven;
 
 public class StevenMove implements MoveInterfaceSteven {
 
-	private StevenButton button;
+	private ButtonInterfaceSteven button;
 	
-	public StevenMove(StevenButton button) {
+	public StevenMove(ButtonInterfaceSteven button) {
 		this.button=button;
 	}
 
