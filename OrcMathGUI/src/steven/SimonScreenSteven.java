@@ -107,6 +107,7 @@ public class SimonScreenSteven extends ClickableScreen implements Runnable {
 	    while(bIndex == lastSelectedButton){
 	        bIndex = (int)(Math.random()*buttons.length);
 	    }
+	    lastSelectedButton=bIndex;
 	    return getMove(bIndex);
 	}
 
