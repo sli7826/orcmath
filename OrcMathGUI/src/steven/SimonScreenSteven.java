@@ -20,7 +20,7 @@ public class SimonScreenSteven extends ClickableScreen implements Runnable {
 	
 	private TextLabel label;
 	private ButtonInterfaceSteven[] buttons;
-	private ProgressInterfaceSteven progress;
+	private TextLabel progress;
 	private ArrayList<MoveInterfaceSteven> sequence;
 	private int roundNumber;
 	private boolean acceptingInput;
@@ -44,8 +44,7 @@ public class SimonScreenSteven extends ClickableScreen implements Runnable {
 		acceptingInput=false;
 		roundNumber++;
 		sequence.add(randomMove());
-		progress.setRound(roundNumber);
-		progress.setSequenceSize(sequence.size());
+		progress.setText("Round: "+roundNumber+"  Size: "+sequence.size());
 		changeText("Simon's turn");
 		playSequence();
 		acceptingInput = true;
@@ -90,16 +89,17 @@ public class SimonScreenSteven extends ClickableScreen implements Runnable {
 		for(ButtonInterfaceSteven b: buttons){ 
 		    viewObjects.add(b); 
 		}
-		progress = getProgress();
+		progress = new TextLabel(230,330,300,40,"");
 		label = new TextLabel(230,230,300,40,"Let's play Simon!");
+		
 		sequence = new ArrayList<MoveInterfaceSteven>();
 		//add 2 moves to start
 		lastSelectedButton = -1;
 		sequence.add(randomMove());
 		sequence.add(randomMove());
 		roundNumber = 0;
-		viewObjects.add(progress);
 		viewObjects.add(label);
+		viewObjects.add(progress);
 	}
 
 	private MoveInterfaceSteven randomMove() {
@@ -117,7 +117,7 @@ public class SimonScreenSteven extends ClickableScreen implements Runnable {
 
 	private ProgressInterfaceSteven getProgress() {
 		// TODO Auto-generated method stub
-		return new StevenProgress(0,0,100,40);
+		return new StevenProgress(100,100,100,100);
 	}
 
 	private void addButtons() {
@@ -154,7 +154,7 @@ public class SimonScreenSteven extends ClickableScreen implements Runnable {
 						if(b == sequence.get(sequenceIndex).getButton()) {
 							sequenceIndex++;
 						}else {
-							progress.gameOver();
+							progress.setText("Game Over");
 						}
 
 						if(sequenceIndex == sequence.size()){ 
