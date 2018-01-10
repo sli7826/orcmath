@@ -91,7 +91,7 @@ public class SimonScreenSteven extends ClickableScreen implements Runnable {
 		    viewObjects.add(b); 
 		}
 		progress = getProgress();
-		label = new TextLabel(130,230,300,40,"Let's play Simon!");
+		label = new TextLabel(230,230,300,40,"Let's play Simon!");
 		sequence = new ArrayList<MoveInterfaceSteven>();
 		//add 2 moves to start
 		lastSelectedButton = -1;
@@ -117,7 +117,7 @@ public class SimonScreenSteven extends ClickableScreen implements Runnable {
 
 	private ProgressInterfaceSteven getProgress() {
 		// TODO Auto-generated method stub
-		return new StevenProgress(300,300,100,40);
+		return new StevenProgress(0,0,100,40);
 	}
 
 	private void addButtons() {

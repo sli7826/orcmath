@@ -1,5 +1,6 @@
 package steven;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
@@ -44,12 +45,13 @@ public class StevenProgress extends Component implements ProgressInterfaceSteven
 
 	@Override
 	public void update(Graphics2D g) {
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
+		clear();
 		if(game) {
-			g.drawString(""+round, x, y);
-			g.drawString(""+seq, x, y+20);
+			g.setColor(Color.black);
+			g.drawString("Round: "+round, x, y);
+			g.drawString("Sequence: "+seq,x, y+20);
 		}else {
+			g.setColor(Color.black);
 			g.drawString("Game over", x, y);
 		}
 
