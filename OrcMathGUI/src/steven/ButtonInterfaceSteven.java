@@ -10,5 +10,5 @@ public interface ButtonInterfaceSteven extends Clickable {
 	void setColor(Color color);
 	void highlight();
 	void dim();
-
+	
 }

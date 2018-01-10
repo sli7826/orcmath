@@ -1,15 +1,17 @@
 package steven;
 
-import java.awt.Color;
 import java.util.ArrayList;
+import java.awt.Color;
 import java.util.List;
+
+
 
 import guiTeacher.components.Action;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
-import guiTeacher.userInterfaces.Screen;
+import guiTeacher.userInterfaces.ClickableScreen;
 
-public class SimonScreenSteven extends Screen implements Runnable {
+public class SimonScreenSteven extends ClickableScreen implements Runnable {
 
 	/**
 	 * 
@@ -29,11 +31,6 @@ public class SimonScreenSteven extends Screen implements Runnable {
 		super(width, height);
 		Thread app = new Thread(this);
 		app.start();
-	}
-
-	public SimonScreenSteven(int width, int height, ArrayList<Visible> initWithObjects) {
-		super(width, height, initWithObjects);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -63,7 +60,7 @@ public class SimonScreenSteven extends Screen implements Runnable {
 			}
 			b=sequence.get(i).getButton();
 			b.highlight();
-			int sleepTime=10000/roundNumber;
+			int sleepTime=1000/roundNumber;
 			try {
 				Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {
@@ -88,7 +85,7 @@ public class SimonScreenSteven extends Screen implements Runnable {
 	}
 
 	@Override
-	public void initObjects(List<Visible> viewObjects) {
+	public void initAllObjects(List<Visible> viewObjects) {
 		addButtons();
 		for(ButtonInterfaceSteven b: buttons){ 
 		    viewObjects.add(b); 
@@ -128,11 +125,11 @@ public class SimonScreenSteven extends Screen implements Runnable {
 		buttons=new ButtonInterfaceSteven[numberOfButtons];
 		Color[] colors={Color.blue,Color.green,Color.red,Color.orange,Color.gray,Color.pink};
 		for(int i=0;i<numberOfButtons;i++) {
-			final ButtonInterfaceSteven b = new StevenButton(10,10,20,20,"",null,colors[i]);
+			final ButtonInterfaceSteven b = getAButton();
 			buttons[i] = b;
 			b.setColor(colors[i]);
 			b.setX(100);
-			b.setY(100+30*i);
+			b.setY(100+50*i);
 			b.setAction(new Action() {
 				
 				@Override
@@ -168,15 +165,14 @@ public class SimonScreenSteven extends Screen implements Runnable {
 					
 				}
 			});
-			buttons[i] = b;
-			b.setColor(colors[i]);
-			b.setX(100);
-			b.setY(100+30*i);
 		}
 	}
 
-	private ButtonInterfaceSteven getAButton(Color c) {
-		return new StevenButton(10,10,20,20,"",null,c);
+	private ButtonInterfaceSteven getAButton() {
+		return new StevenButton(10,10,40,40,"",null);
 	}
+
+
+	
 
 }

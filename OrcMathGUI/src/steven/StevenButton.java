@@ -14,12 +14,11 @@ public class StevenButton extends Button implements ButtonInterfaceSteven {
 	private int x;
 	private int y;
 
-	public StevenButton(int x, int y, int w, int h, String text, Action action,Color c) {
+	public StevenButton(int x, int y, int w, int h, String text, Action action) {
 		super(x, y, w, h, "", action);
 		this.x=x;
 		this.y=y;
 		highlighted=false;
-		color=c;
 		update();
 	}
 	
@@ -37,7 +36,7 @@ public class StevenButton extends Button implements ButtonInterfaceSteven {
 
 	@Override
 	public void setColor(Color color) {
-		//this.color=color;
+		this.color=color;
 		update();
 	}
 
